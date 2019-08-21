@@ -1,12 +1,17 @@
+/* eslint-disable no-proto */
+
 export function User(first, last) {
   this.name = {
-    first: first,
-    last: last
+    first,
+    last,
   };
 }
 
 User.prototype.fullname = function() {
-  return this.name.first + " " + this.name.last;
+  if (this.admin) {
+    return `${this.name.first}_${this.name.last}`;
+  }
+  return `${this.name.first} ${this.name.last}`;
 };
 
 export function Admin(first, last) {
